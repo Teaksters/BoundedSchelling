@@ -1,5 +1,5 @@
 # BoundedSchelling
 
 Voor nu simpelweg runnen door 
-'''python main.py'''
+```python main.py```
 te runnen
