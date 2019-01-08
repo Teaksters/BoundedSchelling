@@ -2,7 +2,6 @@
 
 
 class Agent():
-    def __init__(self, type=0, tolerance=0, empty=True):
+    def __init__(self, type, tolerance=1):
         self.type = type
         self.tolerance = tolerance
-        self.empty = empty
