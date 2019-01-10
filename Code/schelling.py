@@ -1,5 +1,6 @@
 from Code import model
 import random
+import copy
 
 
 class Schelling():
@@ -43,11 +44,22 @@ class Schelling():
             self.model.ones[newN_ID] += 1
         self.model.update([n_ID, newN_ID])
 
-    def find_new_location(self, agent):
+    def find_new_location(self, agent, full=set()):
         '''Find a new suitable place if agent is unhappy.'''
-        newN_ID = random.randint(0, len(self.model.neighborhoods) - 1)
+        Choice = [i for i in range(len(self.model.ratio)) if i not in full]
+        temp = agent.tolerance
+        options = copy.copy(Choice)
+        random.shuffle(options)
+        newN_ID = options.pop()
         while not self.toleranceCheck(agent, newN_ID, False):
-            newN_ID = random.randint(0, len(self.model.neighborhoods) - 1)
+            # If no place is found search for next best place.
+            if len(options) == 0:
+                options = copy.copy(Choice)
+                agent.tolerance += 0.01
+            newN_ID = options.pop()
         if self.model.density[newN_ID] == 1:
-            newN_ID = self.find_new_location(a_ID)
+            full.add(newN_ID)
+            newN_ID = self.find_new_location(agent, full)
+        # reset agents possibly altered tolerance
+        agent.tolerance = temp
         return newN_ID
