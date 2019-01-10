@@ -47,7 +47,7 @@ class Schelling():
     def find_new_location(self, agent, full=set()):
         '''Find a new suitable place if agent is unhappy.'''
         Choice = [i for i in range(len(self.model.ratio)) if i not in full]
-        temp = agent.tolerance
+        temp = copy.copy(agent.tolerance)
         options = copy.copy(Choice)
         random.shuffle(options)
         newN_ID = options.pop()
