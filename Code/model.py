@@ -1,5 +1,4 @@
 '''Class that will be used to house the model'''
-import numpy as np
 from Code import agent
 
 
@@ -27,7 +26,7 @@ class Model():
         '''Fills a single neighborhood with zeros and ones according to
         specified amount of zeros and ones.'''
         for i in range(zeros):
-            self.neighborhoods[neighborhoodID].append(agent.Agent(0))
+            self.neighborhoods[neighborhoodID].append(agent.Agent(0, 0.5))
         for i in range(ones):
             self.neighborhoods[neighborhoodID].append(agent.Agent(1, 0.5))
 
