@@ -26,9 +26,9 @@ class Model():
         '''Fills a single neighborhood with zeros and ones according to
         specified amount of zeros and ones.'''
         for i in range(zeros):
-            self.neighborhoods[neighborhoodID].append(agent.Agent(0, 0.5))
+            self.neighborhoods[neighborhoodID].append(agent.Agent(0))
         for i in range(ones):
-            self.neighborhoods[neighborhoodID].append(agent.Agent(1, 0.5))
+            self.neighborhoods[neighborhoodID].append(agent.Agent(1))
 
     def update(self, n_IDs):
         '''updates ratios and density specs of model after switch'''

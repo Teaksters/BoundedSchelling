@@ -1,20 +1,21 @@
 from Code import model
 import random
 import copy
+import time
+from progressbar import progressbar
 
 
 class Schelling():
     '''Object that runs Schelling model.'''
     def __init__(self, sizes, ratios):
         self.model = model.Model(sizes, ratios)
-        self.ideal = 0.7
+        self.ideal = 1
         self.all_same = 0.8
-        self.p_const0 = 0.01
-        self.p_const1 = 0.8
+        self.p_const = 0
 
     def run(self, iterations):
         '''Run the Schelling model for specified iterations'''
-        for i in range(iterations):
+        for i in progressbar(range(iterations)):
             a_ID, n_ID = self.pick_random_agent()
             if not self.toleranceCheck(a_ID, n_ID):
                 self.move_agent(a_ID, n_ID)
@@ -67,7 +68,7 @@ class Schelling():
                     agent.tolerance = temp
                     return n_ID
             newN_ID = options.pop()
-        if self.model.density[newN_ID] == 1:
+        if self.model.density[newN_ID] >= 1:
             full.add(newN_ID)
             newN_ID = self.find_new_location(agent, n_ID, full)
         # reset agents possibly altered tolerance
@@ -80,9 +81,9 @@ class Schelling():
         agent blend.'''
         if agent.type is 0:
             return self.willingness(n_ID, agent) - \
-                   self.p_const0 * self.model.density[n_ID]
+                   self.p_const * self.model.density[n_ID]
         else:
-            return 1 - self.p_const1 * self.model.density[n_ID]
+            return 1 - self.p_const * self.model.density[n_ID]
 
     def willingness(self, n_ID, agent):
         '''Calculate the agent type component of the utility.'''
