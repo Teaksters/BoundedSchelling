@@ -9,7 +9,7 @@ class Schelling():
     '''Object that runs Schelling model.'''
     def __init__(self, sizes, ratios):
         self.model = model.Model(sizes, ratios)
-        self.ideal = 1
+        self.ideal = 0.5
         self.all_same = 0.8
         self.p_const = 0
 
