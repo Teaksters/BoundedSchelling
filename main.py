@@ -8,6 +8,7 @@ def main():
                       dtype=str,
                       delimiter=',',
                       skiprows=2)
+    data = data[:-1]
     cap, r, wijken = prep(data)
     cap /= 100
     housingp = np.linspace(0, 1, num=11, endpoint=True)
