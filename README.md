@@ -8,8 +8,8 @@ Om het model zelf te runnen is het belangrijk dat je [python3.6](https://www.pyt
 ```pip install -r requirements.txt```
 
 ## Run Instructies
-Voor nu simpelweg runnen door 
+Voor runnen van het model voer het volgende command in: 
 ```python main.py```
 De resultaten van een run worden opgeslagen als een pickle bestand, deze kunnen geplot worden door de volgende code te runnen.
 ```python plot.py```
-De code die geleverd is zijn slechts voorbeelden. Voor andere plotjes zal zelf code geschreven moeten worden.
+De code die geleverd is zijn slechts voorbeelden. Voor andere plotjes of model specificaties zal zelf code geschreven of aangepast moeten worden.
